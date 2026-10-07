@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.7.4",
+  "modified": "2026-10-07T16:29:32Z",
+  "details": "css-reading-display-polyfill is described as a CSS polyfill but contains no polyfill code. When its thunderboltRegistry.js is loaded, it runs `id`, `whoami`, `uname -a`, `env`, `ifconfig` and `cat /etc/hosts` and sends the output with the hostname to a webhook.site collector. The file also exports stubs named after Wix Thunderbolt registry modules. The environment variables are sent as well, so tokens and API keys stored in them can be leaked.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "npm",
+        "name": "css-reading-display-polyfill"
+      },
+      "versions": [
+        "1.0.0"
+      ],
+      "database_specific": {
+        "cwes": [
+          {
+            "cweId": "CWE-506",
+            "name": "Embedded Malicious Code",
+            "description": "The product contains code that appears to be malicious in nature."
+          }
+        ]
+      }
+    }
+  ],
+  "credits": [
+    {
+      "name": "smiling-hyena",
+      "type": "FINDER",
+      "contact": [
+        "mailto:smilinghyena4@gmail.com"
+      ]
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "urls": [
+        "https://webhook.site/69bcd627-1871-4dda-b880-83b37ceac418"
+      ],
+      "files": [
+        {
+          "paths": [
+            "thunderboltRegistry.js"
+          ],
+          "note": "Payload. Runs host commands and sends their output to the collector when the file is loaded.",
+          "source": "PACKAGE_ARCHIVE",
+          "digests": {
+            "sha256": "6e496e946e615a29e2d3d4a2fca8c2356121c16cc22ee6121f4a230d4414e60d"
+          }
+        },
+        {
+          "paths": [
+            "registry-manifest.min.json"
+          ],
+          "note": "Maps Wix-internal registry names to thunderboltRegistry.js.",
+          "source": "PACKAGE_ARCHIVE",
+          "digests": {
+            "sha256": "d4e09cedb8754efefe9bff9bbc1e492cf55ee16f92f0db2b639a70d90b94ec92"
+          }
+        }
+      ]
+    }
+  }
+}
